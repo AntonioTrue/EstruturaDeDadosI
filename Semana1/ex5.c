@@ -10,7 +10,7 @@ double **cria(int n) {
 
     m=calloc(n,sizeof(double*));
     for(i=0;i<n;i++){
-        m[i]=calloc(n,sizeof(double));
+        m[i]=calloc(i+1,sizeof(double));
     }
 
     return m;
@@ -23,7 +23,7 @@ void modifica(double **m, int i, int j, int n, double valor){
     //Verifique se i e j são válidos. Caso não sejam, imprima uma
     // mensagem de erro.
 
-    if(i<n && j<n){
+    if ( (i < n && j < n) && (i >= 0 && j >= 0)) {
         m[i][j]=valor;
     }
     else{
@@ -38,7 +38,7 @@ double acessa(double **m, int i, int j, int n) {
     //Verifique se i e j são válidos. Caso não sejam, imprima uma
     // mensagem de erro e encerre o programa com exit(1)
 
-    if(i<n && j<n){
+    if ((i < n && j < n) && (i >= 0 && j >= 0)) {
         return m[i][j];
     }
     else{
@@ -54,16 +54,21 @@ void imprime(double **m, int n){
     //Ou seja, deve ser impressos os n x n elementos na tela.
     //Imprima os valores com 2 casas decimais
 
-    int i,j;
+    int i,j,alternador=1;
 
     for(i=0;i<n;i++){
         for(j=0;j<n;j++){
-            printf("%.2lf\t",m[i][j]);
+            if(j<alternador){
+                printf("|%.2lf\t",m[i][j]);
+            }
+            else{
+                printf("|%.2lf\t",m[j][i]);
+                }
         }
         printf("\n");
-    }
+        alternador++;
 }
-
+}
 int main() {
     int n = 10;
     double **m = cria(n);
