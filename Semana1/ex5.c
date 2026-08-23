@@ -4,18 +4,31 @@
 double **cria(int n) {
     //Função que cria uma matriz simátrica n x n
     //Essa função também deve inicializar todos os elementos com 0
-    //Retono: ponteiro para a matriz 
+    //Retono: ponteiro para a matriz
     double **m;
+    int i;
+
+    m=calloc(n,sizeof(double*));
+    for(i=0;i<n;i++){
+        m[i]=calloc(n,sizeof(double));
+    }
 
     return m;
 }
 
 void modifica(double **m, int i, int j, int n, double valor){
     //Modifica o elemento m[i][j], atribuindo 'valor' a posição (i, j)
-    //Lembre-se que a matriz é simetrica, então cuidado para não acessar 
+    //Lembre-se que a matriz é simetrica, então cuidado para não acessar
     //um elemento que não esteja explicitamente alocado
-    //Verifique se i e j são válidos. Caso não sejam, imprima uma 
+    //Verifique se i e j são válidos. Caso não sejam, imprima uma
     // mensagem de erro.
+
+    if(i<n && j<n){
+        m[i][j]=valor;
+    }
+    else{
+        printf("Posições inválidas!!!\n");
+    }
 }
 
 double acessa(double **m, int i, int j, int n) {
@@ -23,8 +36,15 @@ double acessa(double **m, int i, int j, int n) {
     //Cuidado para não acessar um elemento que não
     // esteja explicitamente alocado
     //Verifique se i e j são válidos. Caso não sejam, imprima uma
-    // mensagem de erro e encerre o programa com exit(1) 
-    return 0;
+    // mensagem de erro e encerre o programa com exit(1)
+
+    if(i<n && j<n){
+        return m[i][j];
+    }
+    else{
+        printf("Posições inválidas!!!\n");
+        exit(1);
+    }
 }
 
 void imprime(double **m, int n){
@@ -33,6 +53,15 @@ void imprime(double **m, int n){
     //independente de como ela está sendo armazenada.
     //Ou seja, deve ser impressos os n x n elementos na tela.
     //Imprima os valores com 2 casas decimais
+
+    int i,j;
+
+    for(i=0;i<n;i++){
+        for(j=0;j<n;j++){
+            printf("%.2lf\t",m[i][j]);
+        }
+        printf("\n");
+    }
 }
 
 int main() {

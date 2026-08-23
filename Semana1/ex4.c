@@ -10,6 +10,7 @@ int main() {
         if (x == NULL){
             break;
         }
+        free(x);
     }
     return 0;
 }
