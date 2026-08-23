@@ -25,10 +25,10 @@ void modifica(double **m, int i, int j, int n, double valor){
 
     if ( (i < n && j < n) && (i >= 0 && j >= 0)) {
         if(i>=j){
-            m[j][i]=valor;
+            m[i][j]=valor;
         }
         else{
-            m[i][j]=valor;
+            m[j][i]=valor;
         }
     }
     else{
@@ -45,10 +45,10 @@ double acessa(double **m, int i, int j, int n) {
 
     if ((i < n && j < n) && (i >= 0 && j >= 0)) {
         if(i>=j){
-            return m[j][i];
+            return m[i][j];
         }
         else{
-            return m[i][j];
+            return m[j][i];
         }
     }
     else{
@@ -64,19 +64,20 @@ void imprime(double **m, int n){
     //Ou seja, deve ser impressos os n x n elementos na tela.
     //Imprima os valores com 2 casas decimais
 
-    int i,j,alternador=1;
+    int i,j;
+//    int alternador=1;
 
     for(i=0;i<n;i++){
         for(j=0;j<n;j++){
-            if(j<alternador){
-                printf("|%.2lf\t",m[j][i]);
-            }
+//            if(j<alternador){
+                printf("|%.2lf\t",m[i][j]);
+/*            }
             else{
                 printf("|%.2lf\t",m[i][j]);
-            }
+            }*/
         }
         printf("\n");
-        alternador++;
+//        alternador++;
         }
 }
 int main() {
