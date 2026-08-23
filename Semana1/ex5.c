@@ -24,7 +24,12 @@ void modifica(double **m, int i, int j, int n, double valor){
     // mensagem de erro.
 
     if ( (i < n && j < n) && (i >= 0 && j >= 0)) {
-        m[i][j]=valor;
+        if(i>=j){
+            m[j][i]=valor;
+        }
+        else{
+            m[i][j]=valor;
+        }
     }
     else{
         printf("Posições inválidas!!!\n");
@@ -39,7 +44,12 @@ double acessa(double **m, int i, int j, int n) {
     // mensagem de erro e encerre o programa com exit(1)
 
     if ((i < n && j < n) && (i >= 0 && j >= 0)) {
-        return m[i][j];
+        if(i>=j){
+            return m[j][i];
+        }
+        else{
+            return m[i][j];
+        }
     }
     else{
         printf("Posições inválidas!!!\n");
@@ -59,15 +69,15 @@ void imprime(double **m, int n){
     for(i=0;i<n;i++){
         for(j=0;j<n;j++){
             if(j<alternador){
-                printf("|%.2lf\t",m[i][j]);
+                printf("|%.2lf\t",m[j][i]);
             }
             else{
-                printf("|%.2lf\t",m[j][i]);
-                }
+                printf("|%.2lf\t",m[i][j]);
+            }
         }
         printf("\n");
         alternador++;
-}
+        }
 }
 int main() {
     int n = 10;
