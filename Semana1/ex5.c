@@ -70,7 +70,7 @@ void imprime(double **m, int n){
     for(i=0;i<n;i++){
         for(j=0;j<n;j++){
 //            if(j<alternador){
-                printf("|%.2lf\t",m[i][j]);
+                printf("|%.2lf\t",acessa(m,i,j,n));
 /*            }
             else{
                 printf("|%.2lf\t",m[i][j]);
